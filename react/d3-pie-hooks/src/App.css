@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.label {
+  font-size: 20px;
+}
+
+svg {
+  margin: 15px;
+}
+
+button {
+  font-size: 14px;
+}

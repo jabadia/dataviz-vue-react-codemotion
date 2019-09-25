@@ -1,0 +1,36 @@
+<head>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; }
+		svg rect { fill: #16a085; }
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+	<svg id="the-svg" height="200" width="200" @click="onClick">
+		<rect v-for="(height, index) in heights"
+			  :x="index * 30"
+			  :y="200 - height"
+			  width="20"
+			  :height="height"/>
+	</svg>
+
+</body>
+<script>
+	const randInt = (min, max) => Math.floor(min + (Math.random() * (max-min)));
+
+	document.addEventListener('DOMContentLoaded', () => {
+		var vm = new Vue({
+			el: '#the-svg',
+			data: () => ({
+				heights: [50, 100, 80],
+			}),
+			methods: {
+				onClick() {
+					this.heights = Array.from(new Array(randInt(3, 6)), () => randInt(50, 200));
+				},
+			},
+		});
+	});
+</script>

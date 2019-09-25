@@ -1,0 +1,39 @@
+<head>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; }
+		svg rect { fill: #16a085; }
+	</style>
+</head>
+<body>
+	<svg width="200" height="200"></svg>
+</body>
+<script>
+	function drawBars() {
+		const svg = document.getElementsByTagName('svg')[0];
+		const ns = 'http://www.w3.org/2000/svg';
+		const heights = [50, 100, 80];
+
+		const rect1 = document.createElementNS(ns, 'rect');
+		rect1.setAttributeNS(null, 'x', 0);
+		rect1.setAttributeNS(null, 'y', 200 - heights[0]);
+		rect1.setAttributeNS(null, 'width', 20);
+		rect1.setAttributeNS(null, 'height', heights[0]);
+		svg.appendChild(rect1);
+
+		const rect2 = document.createElementNS(ns, 'rect');
+		rect2.setAttributeNS(null, 'x', 30);
+		rect2.setAttributeNS(null, 'y', 200 - heights[1]);
+		rect2.setAttributeNS(null, 'width', 20);
+		rect2.setAttributeNS(null, 'height', heights[1]);
+		svg.appendChild(rect2);
+
+		const rect3 = document.createElementNS(ns, 'rect');
+		rect3.setAttributeNS(null, 'x', 60);
+		rect3.setAttributeNS(null, 'y', 200 - heights[2]);
+		rect3.setAttributeNS(null, 'width', 20);
+		rect3.setAttributeNS(null, 'height', heights[2]);
+		svg.appendChild(rect3);
+	}
+	document.addEventListener('DOMContentLoaded', drawBars, false);
+</script>

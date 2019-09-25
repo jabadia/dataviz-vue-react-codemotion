@@ -1,0 +1,37 @@
+<head>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; }
+		svg rect { fill: #16a085; }
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.10.0/d3.min.js"></script>
+</head>
+<body>
+	<svg width="200" height="200"></svg>
+</body>
+<script>
+	let heights = [50, 100, 80];
+	function drawBars() {
+		const svg = d3.select('svg');
+
+		const rects = svg.selectAll('rect').data(heights);
+
+		/* ENTER */
+		const rectsEnter = rects.enter()
+				.append('rect');
+
+		/* UPDATE */
+		rects.merge(rectsEnter)
+			.attr('x', (d,i) => i * 30)
+			.attr('y', d => 200 - d)
+			.attr('width', 20)
+			.attr('height', d => d);
+
+		/* EXIT */
+		rects.exit().remove();
+	}
+	document.addEventListener('DOMContentLoaded', drawBars, false);
+	document.addEventListener('click', () => {
+		const randInt = (min, max) => Math.floor(min + (Math.random() * (max-min)));
+	});
+</script>

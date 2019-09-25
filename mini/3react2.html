@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React Simple BarChart</title>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; display: block; }
+		svg rect { fill: #16a085; }
+	</style>
+</head>
+<body translate="no">
+<div id="app"></div>
+<script src='//cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.min.js'></script>
+<script id="rendered-js">
+	const randInt = (min, max) => Math.floor(min + (Math.random() * (max-min)));
+	class Chart extends React.Component {
+		constructor() {
+			super();
+			this.state = {
+				heights: [50, 100, 80],
+			};
+			this.onClick = this.onClick.bind(this);
+		}
+
+		onClick() {
+			this.setState({heights: Array.from(new Array(randInt(3,6)), () => randInt(50,200))});
+		}
+
+		render() {
+			const { heights } = this.state;
+			return React.createElement('svg', { width: '200', height: '200', onClick: this.onClick },
+				heights.map((height, i) =>
+					React.createElement('rect', {
+						x: i * 30,
+						y: 200 - height,
+						width: '20',
+						height: height
+					})));
+		}
+	}
+	React.render(React.createElement(Chart, null), document.getElementById('app'));
+</script>
+</body>
+</html>

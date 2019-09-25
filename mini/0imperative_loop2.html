@@ -1,0 +1,38 @@
+<head>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; }
+		svg rect { fill: #16a085; }
+	</style>
+</head>
+<body>
+	<svg width="200" height="200"></svg>
+</body>
+<script>
+	let heights = [50, 100, 80];
+
+	function drawBars() {
+		const svg = document.getElementsByTagName('svg')[0];
+		const ns = 'http://www.w3.org/2000/svg';
+
+		while (svg.lastChild) {
+			svg.removeChild(svg.lastChild);
+		}
+
+		for (let i = 0; i < heights.length; i++) {
+			const rect = document.createElementNS(ns, 'rect');
+			rect.setAttributeNS(null, 'x', 30 * i);
+			rect.setAttributeNS(null, 'y', 200 - heights[i]);
+			rect.setAttributeNS(null, 'width', 20);
+			rect.setAttributeNS(null, 'height', heights[i]);
+			svg.appendChild(rect);
+		}
+	}
+	document.addEventListener('DOMContentLoaded', drawBars, false);
+
+	document.addEventListener('click', () => {
+		const randInt = (min, max) => Math.floor(min + (Math.random() * (max-min)));
+		heights = Array.from(new Array(randInt(3, 6)), () => randInt(50, 200));
+		drawBars();
+	});
+</script>

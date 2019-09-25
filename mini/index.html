@@ -1,0 +1,59 @@
+<head>
+<title>paradigmas</title>
+<link href="/favicon2.ico" rel="icon">
+<style>
+	body { font-family: Helvetica, sans-serif; color: #666; }
+	h2 { font-size: 1.2rem;}
+	iframe { border: 1px solid #ccc; height: 200px; width: 200px; }
+	.container { display: flex; align-items: flex-end; flex-wrap: wrap; }
+	.container > div { margin: 8px; }
+	.hljs { font-size: 1.4rem; tab-size: 2; }
+	.my-code { overflow-x: hidden; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<h1>paradigmas</h1>
+	<div class="container" @mouseover="onHover">
+<!--		<div><h2>imperative</h2>               <iframe frameborder="0" src="0imperative.html"></iframe></div>-->
+		<div><h2>imperative (w/loop)</h2>      <iframe frameborder="0" src="0imperative_loop.html"></iframe></div>
+		<div><h2>data-driven</h2>              <iframe frameborder="0" src="1datadriven.html"></iframe></div>
+<!--		<div><h2>declarative (vue)</h2>        <iframe frameborder="0" src="2declarative.html"></iframe></div>-->
+		<div><h2>declarative w/loop (vue)</h2> <iframe frameborder="0" src="2declarative_loop.html"></iframe></div>
+		<div><h2>react (functional?)</h2>      <iframe frameborder="0" src="3react.html"></iframe></div>
+		<!--
+		<div><h2>react (codepen)</h2>          <iframe frameborder="0" src="https://codepen.io/jabadia/full/MWgvZNV" class="codepen-iframe"></iframe></div>
+		-->
+	</div>
+	<h1>{{title}}</h1>
+	<pre ref="pre" class="my-code"><code ref="code" class="hljs"></code></pre>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	var vm = new Vue({
+		el: '#app',
+		data: () => ({
+			title: undefined,
+			htmlSource: undefined,
+		}),
+		methods: {
+			async onHover(ev) {
+				const el = ev.target;
+				if (el.tagName === 'IFRAME') {
+					const src = el.getAttribute('src');
+					this.title = src;
+					this.$refs.code.innerText = await (await fetch(src)).text();
+					this.$nextTick(() => {
+						hljs.configure({languages: ['html', 'javascript']});
+						hljs.highlightBlock(this.$refs.code);
+					});
+				}
+			},
+		},
+	});
+});
+</script>
+</body>

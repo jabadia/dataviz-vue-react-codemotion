@@ -1,0 +1,25 @@
+<head>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; }
+		svg rect { fill: #16a085; }
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<svg id="the-svg" height="200" width="200">
+		<rect x="0"  :y="200-heights[0]" width="20" :height="heights[0]"/>
+		<rect x="30" :y="200-heights[1]" width="20" :height="heights[1]"/>
+		<rect x="60" :y="200-heights[2]" width="20" :height="heights[2]"/>
+	</svg>
+</body>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		var vm = new Vue({
+		  el: '#the-svg',
+		  data: () => ({
+		  	heights: [50, 100, 80],
+		  }),
+		});
+	});
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React Simple BarChart</title>
+	<style>
+		body { margin: 0; padding: 0; }
+		svg { background-color: #ecf0f1; display: block; }
+		svg rect { fill: #16a085; }
+	</style>
+</head>
+<body translate="no">
+<div id="app"></div>
+<script src='//cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+<script id="rendered-js">
+	const randInt = (min, max) => Math.floor(min + (Math.random() * (max-min)));
+	class Chart extends React.Component {
+		constructor() {
+			super();
+			this.state = {
+				heights: [50, 100, 80],
+			};
+			this.onClick = this.onClick.bind(this);
+			this.animate = this.animate.bind(this);
+			this.rects = [];
+		}
+
+		onClick() {
+			this.setState({ heights: Array.from(new Array(randInt(3, 6)), () => randInt(50, 200)) });
+			setTimeout(this.animate, 0);
+		}
+
+		animate() {
+			this.rects.filter(rect => rect).forEach((rect, i) => {
+				const height = this.state.heights[i];
+				TweenLite.to(rect.getDOMNode(), 1, { attr: { y: 200 - height, height: height } });
+			});
+		}
+
+		componentDidMount() {
+			this.animate();
+		}
+
+		render() {
+			const { heights } = this.state;
+			this.rects = [];
+			return React.createElement('svg', { width: '200', height: '200', onClick: this.onClick },
+				heights.map((height, i) =>
+					React.createElement('rect', {
+						x: i * 30,
+						// y: 200 - height,
+						y: 200,
+						width: '20',
+						height: 0,
+						// height: height,
+						ref: rect => this.rects[i] = rect,
+					})));
+		}
+	}
+	React.render(React.createElement(Chart, null), document.getElementById('app'));
+</script>
+</body>
+</html>
