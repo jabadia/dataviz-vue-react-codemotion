@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@vue/eslint-config-standard": "^3.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "d3": "^5.5.0",
     "gsap": "^2.0.1",
     "lodash": "^4.3.0",
