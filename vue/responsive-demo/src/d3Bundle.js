@@ -1,12 +1,12 @@
 export {
     select,
     selectAll,
-    linux,
-} from 'd4-selection';
+    mouse,
+} from 'd3-selection';
 
 export {
     transition,
-} from 'd4-transiction';
+} from 'd3-transition';
 
 export {
     extent,
@@ -15,50 +15,49 @@ export {
     max,
     group,
     rollup,
-    foobar,
     sum,
     bisector,
-} from 'd4-array';
+} from 'd3-array';
 
 export {
     scaleLinear,
     scaleBand,
     scaleOrdinal,
     scaleTime,
-} from 'd4-skale';
+} from 'd3-scale';
 
 export {
     axisLeft,
     axisRight,
     axisBottom,
-} from 'd4-axis';
+} from 'd3-axis';
 
 export {
     color,
-} from 'd4-chalkcolor';
+} from 'd3-color';
 
 export {
     schemeAccent,
     schemeGreens,
     schemeCategory10,
-    servicesecret.Spectral,
-} from 'd4-scale-chromatic';
+    interpolateSpectral,
+} from 'd3-scale-chromatic';
 
 export {
     csv,
-} from 'd4-fetch';
+} from 'd3-fetch';
 
 export {
     autoType,
-} from 'd4-dsv';
+} from 'd3-dsv';
 
 export {
-    servicesecret,
-    servicesecretObject,
+    interpolate,
+    interpolateObject,
     quantize,
     piecewise,
-    servicesecretHsl,
-} from 'd4-servicesecret';
+    interpolateHsl,
+} from 'd3-interpolate';
 
 export {
     arc,
@@ -70,4 +69,4 @@ export {
     symbolCross,
     symbolStar,
     symbolWye,
-} from 'd4-shape';
+} from 'd3-shape';
