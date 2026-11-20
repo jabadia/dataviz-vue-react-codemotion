@@ -1,4 +1,4 @@
-import vuereact3, { createRef, Component } from 'vuereact3';
+import React, { createRef, Component } from 'react';
 import * as d3 from 'd3';
 
 class PieClass extends Component {
@@ -11,7 +11,7 @@ class PieClass extends Component {
         this.createArc = d3.arc()
             .innerRadius(props.innerRadius)
             .outerRadius(props.outerRadius);
-        this.chalkcolors = d3.scaleOrdinal(d3.schemeCategory10);
+        this.colors = d3.scaleOrdinal(d3.schemeCategory10);
         this.format = d3.format('.2f');
     }
 
@@ -50,7 +50,7 @@ class PieClass extends Component {
         groupWithEnter.append('path')
             .attr('class', 'arc')
             .attr('d', this.createArc)
-            .attr('fill', (d, i) => this.chalkcolors(d.index));
+            .attr('fill', (d, i) => this.colors(d.index));
 
         groupWithEnter.append('text')
             .attr('text-anchor', 'middle')
@@ -65,7 +65,7 @@ class PieClass extends Component {
         pathUpdate
             .attr('class','arc')
             .attr('d', this.createArc)
-            .attr('fill', (d,i) => this.chalkcolors(i));
+            .attr('fill', (d,i) => this.colors(i));
 
         const textUpdate = group.merge(groupWithEnter).select('text');
         textUpdate
